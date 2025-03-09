@@ -1,17 +1,16 @@
-exports.processCSV = (csvData) => {
+// Updated ESM syntax:
+export const processCSV = (csvData) => {
     const lines = csvData.trim().split('\n');
     if (lines.length < 2) {
       throw new Error('CSV file must have a header and at least one data row');
     }
   
-    // Validate header row
     const header = lines[0].split(',');
     if (header.length !== 2 || header[0].trim() !== 'Name' || header[1].trim() !== 'Salary') {
       throw new Error('Invalid CSV header');
     }
   
     const users = [];
-    // Process each data row
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
@@ -24,7 +23,6 @@ exports.processCSV = (csvData) => {
       if (isNaN(salary)) {
         throw new Error(`Salary is not a number in row ${i + 1}`);
       }
-      // Ignore rows with negative salary
       if (salary < 0.0) continue;
       users.push({ name, salary });
     }

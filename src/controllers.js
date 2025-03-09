@@ -1,7 +1,7 @@
-const db = require('./db');
-const csvProcessor = require('./csvProcessor');
+import * as db from './db.js';
+import * as csvProcessor from './csvProcessor.js';
 
-exports.getUsers = (req, res) => {
+export const getUsers = (req, res) => {
   // Parse query parameters with defaults
   let { min = 0.0, max = 4000.0, offset = 0, limit, sort } = req.query;
   min = parseFloat(min);
@@ -38,7 +38,7 @@ exports.getUsers = (req, res) => {
   res.status(200).json({ results: users });
 };
 
-exports.uploadCSV = (req, res) => {
+export const uploadCSV = (req, res) => {
   // Retrieve CSV content from form field "file"
   const csvData = req.body.file;
   if (!csvData) {

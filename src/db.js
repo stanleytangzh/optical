@@ -1,15 +1,15 @@
-// In-memory user storage
+// ESM syntax
 const users = [];
 
-// Seed initial data if empty
+// Seed initial data
 if (users.length === 0) {
   users.push({ name: 'Alex', salary: 3000.0 });
   users.push({ name: 'Bryan', salary: 3500.0 });
 }
 
-exports.getUsers = () => users;
+export const getUsers = () => users;
 
-exports.upsertUser = (user) => {
+export const upsertUser = (user) => {
   const index = users.findIndex(u => u.name === user.name);
   if (index !== -1) {
     // Update existing user
